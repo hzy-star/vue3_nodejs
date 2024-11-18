@@ -4,8 +4,8 @@
         <h1 class="title">后台管理系统</h1>
         <!-- 中间的tabs -->
         <div class="tabs">
-            <el-tabs type="border-card" stretch>
-                <el-tab-pane label="账号登录">
+            <el-tabs type="border-card" stretch v-model="activeName">
+                <el-tab-pane name="account" label="账号登录">
                     <template #label>
                         <span class="custom-tabs-label">
                             <el-icon>
@@ -14,18 +14,18 @@
                             <span>账号登录</span>
                         </span>
                     </template>
-                    123
+                    <paneAccount  ref="accountRef" />
                 </el-tab-pane>
-                <el-tab-pane label="手机登录">
+                <el-tab-pane name="phone" label="手机登录">
                     <template #label>
                         <span class="custom-tabs-label">
                             <el-icon>
                                 <Iphone />
                             </el-icon>
-                            <span>账号登录</span>
+                            <span>手机登录</span>
                         </span>
                     </template>
-                    33
+                    <panePhone />
                 </el-tab-pane>
             </el-tabs>
         </div>
@@ -34,13 +34,31 @@
             <el-checkbox v-model="isRemPwd">记住密码</el-checkbox>
             <el-link type="primary">忘记密码</el-link>
         </div>
-        <el-button class="login-btn" size="large" type="primary">登录</el-button>
+        <el-button class="login-btn" size="large" type="primary" @click="handleClickLogin">登录</el-button>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-const isRemPwd = ref(false)
+import { ref ,watch} from 'vue';
+import paneAccount from './pane-account.vue';
+import panePhone from './pane-phone.vue';
+import { localCache } from '@/utils/cache';
+const activeName = ref('account')
+const isRemPwd = ref<boolean>(localCache.getCache('isRemPwd') ?? false)
+watch(isRemPwd, (newValue: boolean) => {
+    localCache.setCache('isRemPwd', newValue)
+})
+
+const accountRef = ref<InstanceType<typeof paneAccount>>()
+
+function handleClickLogin(){
+    if(activeName.value === 'account'){
+        accountRef.value?.loginAccount(isRemPwd.value)
+    }else{
+        console.log('登录',activeName.value);
+    }
+}
+
 </script>
 
 <style scoped>
