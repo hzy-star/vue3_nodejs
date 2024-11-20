@@ -1,32 +1,56 @@
-# vue3_ts
+## 项目介绍
 
-This template should help get you started developing with Vue 3 in Vite.
+该项目是一个基于vue3+ts+element-plus+pinia+vue-router+axios+vite构建的前端项目模板，适用于快速搭建中后台管理系统。
 
-## Recommended IDE Setup
+## 功能特点
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- 使用Vue3框架，支持Composition API和Options API两种开发方式
+- 使用TypeScript，提供类型检查和自动补全功能
+- 使用Element Plus组件库，提供丰富的UI组件和样式
+- 使用Pinia状态管理库，提供全局状态管理和组件通信
+- 使用Vue Router路由管理库，提供路由守卫和懒加载功能
 
-## Type Support for `.vue` Imports in TS
+## 目录结构
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+```
+├── public
+│   └── index.html
+├── src
+│   ├── assets
+│   ├── components
+│   ├── router
+│   ├── store
+│   ├── utils
+│   ├── views
+│   ├── App.vue
+│   └── main.ts
+├── .gitignore
+├── package.json
+├── README.md
+└── vite.config.ts
+```
 
-## Customize configuration
+## 开发环境
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Node.js版本：v20.16.0
+- Vue版本：v3.5.12
+- TypeScript版本：v5.6.3
+- Vite版本：v5.4.11
 
-## Project Setup
+
+## 项目设置初始化
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 项目启动命令---需结合node后端代码同时启动
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### 打包项目命令
 
 ```sh
 npm run build
